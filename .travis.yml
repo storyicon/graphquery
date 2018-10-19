@@ -1,16 +1,18 @@
 language: go
 go:
-    - 1.x
-    - "1.8"
-    - "1.9"
-    - 1.10.x
+- 1.x
+- '1.8'
+- '1.9'
+- 1.10.x
 before_install:
-    - go get github.com/mattn/goveralls
+- go get github.com/mattn/goveralls
 script:
-    - go test -v ./...
-    - go test -race -coverprofile=coverage.txt -covermode=atomic
-    - $GOPATH/bin/goveralls -service=travis-ci
-dd:
-    secure: eKUaA6uIzAFkiFGEQCDpzu3zdA8KTK3T3T+Y7IFtO/AnK2AlGBlGSqQvrG/1tsp2MigClbnc1UpdlqD8H3P4VxOOUXu9zEASyX0mEi28svtCtPx+qv0xIkce+sGj2kvk0QwL4a3YgFMm8e2gACWpdSE8jHd3zCGBVKC7ktPTeINryDyJEu9QU5LBzHt/tsOj6gu7rK8AwqzVBIRWHNWH4ZL8AWaeMhLBONSnpkstPGDWTh8p3B0YLIuFFss55zFzR11M13jX2lS65qo75EfHcNHz9L0oZ1JGIMTDRu4Oc8Wi0oW0gdyJrLgUvCvQVsQ9k8bjlxpy9opBsPHf+WhMYR/qjMBBecWLcOlyC2/6G51BtfsaI7hlITJiI8go2vZvek1aBzfKJSeN6gXN7ymKBQs5J2tILRk24T2BskSxZwE1LlJYzNpdCfyEd7642frRwNzVkMEaAoMYDaQlcJPdAB/kNJorfj4PSAmlVVq89TKUcgdIhKZ+UZexflWoroIJvW+VjSuf3SRC44M1zOVTwUgn7/FWGtVVitpBfxi+ZxVCwqPQqBYTwtqKFwF4hOJXnFGjSqtf/FIUUz1wlGNLWIwhmxTQyH+h4THl4WJtdBbiHFU81kphudfdmbGayXmashGyKQNmPuCeRBnAdOsJC/ef1eTAjzullFM6rKflz1A=
+- go test -v ./...
+- "$GOPATH/bin/goveralls -service=travis-ci"
 after_success:
-    - bash <(curl -s https://codecov.io/bash)
+- bash <(curl -s https://codecov.io/bash)
+env:
+  global:
+    secure: Gbl1twbEfB7MqCWdkBMKiSy3edowRljKbCRAzzCd7fk3Lb0JwrEqlkg8heSZ6ePWg/nKKTf44/oL4fl3CJMdnheqU7UZKpypx6jEQz3KKfzVZBM2ZDsZGQlh5DNbKhFNMw73207zxVwbcUwEmPyIyxyIfeUJqhKO4ugYJcdG0G6vBYIQ2a5mX8FNzxX+Of74pO2S/VPDuGdVzbihq5T0qoEND7Hk/SNgKM1QXkuLxagoUIf2lm0mpLrGGeAZ9qMEPqk49ZaHO0U2ZcUMz2XQQMB4pi1VaPyLPKoDMNkvP2AfWxt7j9kHcXXwTz2yXxgStQ230Qq43sVmdDdKh1KcnmJ9a6rgQzZdaPisPo30ZmF3sp3IxtFkvCmLFRfVrnUb3ZgIn9/rD6cyegmm3UTntRdAx5vNgfruVycmOJHISJRGbFcWQoOnyUWjHv5OmabDkFpfZYUbEIYkH2r8mbCAPNFrvNnsYDU07cr64CTp93tv4SguW8/Y0ZekEU9a3c5JnnA7fRCwgoHbN1EjFDhjoIK3mxgvmfbaC0Igno7lFoDARyhKQVHQzSOANrGH+Kp5wAu86IG0bQRG5fF4seyysU60uhnapfhbZ5n42d8iwHiDU8tsdA7gQ/zEz0GEBJGksSB5S12O7c2PxBqqWhvOJYkR0svu+ixvXdcRf912f3o=
+dd:
+  secure: Gbl1twbEfB7MqCWdkBMKiSy3edowRljKbCRAzzCd7fk3Lb0JwrEqlkg8heSZ6ePWg/nKKTf44/oL4fl3CJMdnheqU7UZKpypx6jEQz3KKfzVZBM2ZDsZGQlh5DNbKhFNMw73207zxVwbcUwEmPyIyxyIfeUJqhKO4ugYJcdG0G6vBYIQ2a5mX8FNzxX+Of74pO2S/VPDuGdVzbihq5T0qoEND7Hk/SNgKM1QXkuLxagoUIf2lm0mpLrGGeAZ9qMEPqk49ZaHO0U2ZcUMz2XQQMB4pi1VaPyLPKoDMNkvP2AfWxt7j9kHcXXwTz2yXxgStQ230Qq43sVmdDdKh1KcnmJ9a6rgQzZdaPisPo30ZmF3sp3IxtFkvCmLFRfVrnUb3ZgIn9/rD6cyegmm3UTntRdAx5vNgfruVycmOJHISJRGbFcWQoOnyUWjHv5OmabDkFpfZYUbEIYkH2r8mbCAPNFrvNnsYDU07cr64CTp93tv4SguW8/Y0ZekEU9a3c5JnnA7fRCwgoHbN1EjFDhjoIK3mxgvmfbaC0Igno7lFoDARyhKQVHQzSOANrGH+Kp5wAu86IG0bQRG5fF4seyysU60uhnapfhbZ5n42d8iwHiDU8tsdA7gQ/zEz0GEBJGksSB5S12O7c2PxBqqWhvOJYkR0svu+ixvXdcRf912f3o=
