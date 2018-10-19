@@ -1,14 +1,13 @@
 language: go
 go:
-    - 1.x
-    - "1.8"
-    - "1.9"
-    - 1.10.x
+- 1.x
+- '1.8'
+- '1.9'
+- 1.10.x
 script:
-    - go test -v ./...
-    - go test -race -coverprofile=coverage.txt -covermode=atomic
+- go test -v ./...
+- go test -race -coverprofile=coverage.txt -covermode=atomic
 dd:
-    secure: BdEA2jusnSc1XljIlaIXNYZvrbya8xfm8xtPM84IoPeR8a+5Z371ebpRTjp4NSEspbgKmEOYw/rZw1suvHvlQdVnNv2QnbIlzkg+fysMH4Hne5n4Ucbn22f40GA8LdI6l4Bq9iwOpo7+jQfTaMwen1pk7eKB0/FRCZgYPCq7cF2Zv4jHvhuauNy5HkYq3Y0uy3dRbJopwUwqvywkYrEh9wFbbxgfHyDELvAfxrSwnDLrK5V7Q7FeWf9ZN1yQRntLVrF+CEkaAFzpTySbF4Tdv5cCbksHMMcGGW07cxBzUBRER0YmRWCbh2mUJGTWkQTtff7Htc7UUZ9AtUwHcc99ImGHawcAeZ92mFtUbgwTYWNr+A+IeFt8ErI7fmV0JEKAPw8R/g7mlKhwrJzGAP/4O6lgvMb0FzdGFe/umONUuhiTxAxHM78uYvkMu4iwURb4I1JvmOXFNTi4V92g2q4E6YMaNMTmVxIk1QRIR7ivCfJQouVjkX9TsqnhzXb41IsTR67uOaUYiwcegYSDMQy3aN8M+WtGafcGjJkTkvETo8+4pJrCl9v6QB/5MxwMbR78JOtX0gdyRzY9mdrAQQ3IpR5iBFNU238GG2YkGvXMFl4D4ILv5pTZdVNeAFwl0UxVNBPRdPZUHOsxe3eU4IeWW2Q6K/IGC1/hcWnnRGn4Rqg=
+  secure: srjkLJXcw86FP7NeM+nZnqbkwlJI2jXGreufnzDQgNCt1tVO6wOzijAl9jpmrw+5ygIRsdAWwx84MVd/fyojwmIWNfqfsAO0ylbEQB+GVm8vpyn3xabP0sVib+zY1KLxBbu64j70bZxQfhnNGZ0G93riz9coHs0am7/BCXZJ6psa2ndDIOyJXZMEP10Ko8wCsHI2Npe7hZYeF7g2Ikdhoo2YU+4d/wZLmxTaZ/64A0ewbyVFVEZW5f0NTvWM9K3KKHTVZ0+nYPcQ7xExXzUl6HKK8PHIj/n4bPlzUDS70xXMNNxCfYITS+jlohhUwmPrphWbFIVxyoFZPvAjBpKkS4jvPAAWw4VhS+3VQo9kJ1GQ1ovvwDZ/WNYZD6eFG4527TBa9LeOmq80gqSbqkJibccF7tJwkOu0Df9pQWoM5huMiqRh0owN6CJXX/CJ0FvLZaqJ2dShHolr/2lGmYRPN74wmfQTzTkuQ/DBTILazagcnnUtarb43xGyVcYZi53TGebRYPJyPkaozWqeCIE2i9G4HeiBrCmEjwh2bprfBPvW10Av1PPNqobrS5Bf1iWUD+zOV5n45EgxsS//4lCwpK2+bVg8pez8mPwiYk7VWbqbNqfhpZd9XfMdIYogEMj2KX6fyVtDJlGIZD+twyvG30CbR8f4TXmVmzHZ4L26aNI=
 after_success:
-    - bash <(curl -s https://codecov.io/bash)
- 
+- bash <(curl -s https://codecov.io/bash)
