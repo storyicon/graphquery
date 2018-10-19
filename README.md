@@ -134,7 +134,8 @@ The `language` is the field name, `css("title"); attr("lang")` is the pipeline. 
 ![language: document->css("title")->attr("lang")->en](https://raw.githubusercontent.com/storyicon/graphquery/master/docs/screenshot/pipeline-getlang.png) 
 
 In Example1, we not only use the css and attr functions, but also xpath(). It is easy to associate, Xpath() is to select elements with the Xpath selector.
-The following is a list of the pipeline functions built into the current version of graphquery:
+The following is a list of the pipeline functions built into the current version of graphquery:    
+
 | pipeline | prototype | example | introduce
 | ------ | ------ | ------ | ----- |
 | css | css(CSSSelector) | css("title") | Use CSS selector to select elements | 
