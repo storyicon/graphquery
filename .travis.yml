@@ -4,17 +4,15 @@ go:
 - '1.8'
 - '1.9'
 - 1.10.x
-
 install:
-  - go get github.com/mattn/goveralls
-
-
+- go get github.com/mattn/goveralls
 script:
 - go test -v ./...
 - go test -race -coverprofile=coverage.txt -covermode=atomic
 - go test -v -covermode=count -coverprofile=coverage.out
-- $HOME/gopath/bin/goveralls -coverprofile=coverage.out -service=travis-ci -repotoken $COVERALLS_TOKEN
+- "$HOME/gopath/bin/goveralls -coverprofile=coverage.out -service=travis-ci -repotoken
+  $COVERALLS_TOKEN"
 dd:
-  secure: srjkLJXcw86FP7NeM+nZnqbkwlJI2jXGreufnzDQgNCt1tVO6wOzijAl9jpmrw+5ygIRsdAWwx84MVd/fyojwmIWNfqfsAO0ylbEQB+GVm8vpyn3xabP0sVib+zY1KLxBbu64j70bZxQfhnNGZ0G93riz9coHs0am7/BCXZJ6psa2ndDIOyJXZMEP10Ko8wCsHI2Npe7hZYeF7g2Ikdhoo2YU+4d/wZLmxTaZ/64A0ewbyVFVEZW5f0NTvWM9K3KKHTVZ0+nYPcQ7xExXzUl6HKK8PHIj/n4bPlzUDS70xXMNNxCfYITS+jlohhUwmPrphWbFIVxyoFZPvAjBpKkS4jvPAAWw4VhS+3VQo9kJ1GQ1ovvwDZ/WNYZD6eFG4527TBa9LeOmq80gqSbqkJibccF7tJwkOu0Df9pQWoM5huMiqRh0owN6CJXX/CJ0FvLZaqJ2dShHolr/2lGmYRPN74wmfQTzTkuQ/DBTILazagcnnUtarb43xGyVcYZi53TGebRYPJyPkaozWqeCIE2i9G4HeiBrCmEjwh2bprfBPvW10Av1PPNqobrS5Bf1iWUD+zOV5n45EgxsS//4lCwpK2+bVg8pez8mPwiYk7VWbqbNqfhpZd9XfMdIYogEMj2KX6fyVtDJlGIZD+twyvG30CbR8f4TXmVmzHZ4L26aNI=
+  secure: X2qGOXBHcueoCSS9smf4O8VvL1+7LlbsiN54h6JNwLIt3j4HF2otFSBiLhh/1us2C48FsNQGyZ9YmmqghVCK0xA7PvgZC+Ul4PZ92aZQ//VrJQlOcpxFGnV4m28Tyj86Pm+GxeG7ljhr9mInqz63VJXTejJNHXnQg9Gj60W5MB/dpedNZmPaN/CaYNoD8gM3fTrfVUMChXtdQl48TrgSoS78FxFdRYrE2UBor3QVLH7r1xfLNZGt8kjUgmjso8t2K1+od3cj5so5dXgl6+n9wOfS8HPetVtLHOWgTuhU6P3HZ1KYNGffyjIvi1QDzvagdfcrkRW/OXFpRmx0uWx9G2sMjHUI2P8QHEdHA5O6itRmuQEiiW1GxCAiCD6fyZG//JwBmyXT5r9SUMY+dQ8YnuhrtM7ypVg1bOceeRqdXcBJwjAQWw6UFJJAge2Dbrmtoj3UUtqVf5DhWxKXVFiPvfPOaVErEGQry51KXlDhDjSypNt4NAWsMCLpUUfl5lzKtMVkErd/tfR/U2oPJwBUuAaMI4avE1GZdBScqSlJETp+NebcbJc827l3Iscr82pzH57x3sN9eB11gSCOFSjIxsDt3BAetgmIq+G1SgAZpan84k3aVdCHdT70x6EnnpqvsrreTizVWnKJ45X0QO16y5zhgenyZ83Tcyo3aE84qVM=
 after_success:
 - bash <(curl -s https://codecov.io/bash)
