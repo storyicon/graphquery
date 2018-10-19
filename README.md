@@ -1,8 +1,8 @@
 # Graphquery
 ![GraphQuery](https://raw.githubusercontent.com/storyicon/graphquery/master/docs/screenshot/graphquery.png)
-[![Go Report Card](https://goreportcard.com/badge/github.com/storyicon/graphquery)](https://goreportcard.com/report/github.com/storyicon/graphquery)
- 
- 
+[![Go Report Card](https://goreportcard.com/badge/github.com/storyicon/graphquery)](https://goreportcard.com/report/github.com/storyicon/graphquery)  [![CircleCI](https://circleci.com/gh/storyicon/graphquery/tree/master.svg?style=svg)](https://circleci.com/gh/storyicon/graphquery/tree/master)
+
+
 GraphQuery is a query language and execution engine tied to any backend service. 
 
 ## Overview
@@ -136,7 +136,7 @@ The `language` is the field name, `css("title"); attr("lang")` is the pipeline. 
 In Example1, we not only use the css and attr functions, but also xpath(). It is easy to associate, Xpath() is to select elements with the Xpath selector.
 The following is a list of the pipeline functions built into the current version of graphquery:    
 
-| pipeline | prototype | example | introduce
+| pipeline | prototype | example | introduce 
 | ------ | ------ | ------ | ----- |
 | css | css(CSSSelector) | css("title") | Use CSS selector to select elements | 
 | json | json(JSONSelector) | json("title") | Use json path to select elements | 
