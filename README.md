@@ -1,9 +1,15 @@
-# Graphquery
+**We are looking for contributors**! Please check the [ROADMAP](https://github.com/storyicon/graphquery/blob/master/ROADMAP.md) to see how you can help ❤️
+
+---
+
+# Graphquery 
 ![GraphQuery](https://raw.githubusercontent.com/storyicon/graphquery/master/docs/screenshot/graphquery.png)
-[![CircleCI](https://circleci.com/gh/storyicon/graphquery/tree/master.svg?style=svg)](https://circleci.com/gh/storyicon/graphquery/tree/master)
-[![Go Report Card](https://goreportcard.com/badge/github.com/storyicon/graphquery)](https://goreportcard.com/report/github.com/storyicon/graphquery)  [![Build Status](https://travis-ci.org/storyicon/graphquery.svg?branch=master)](https://travis-ci.org/storyicon/graphquery) [![Coverage Status](https://coveralls.io/repos/github/storyicon/graphquery/badge.svg?branch=master)](https://coveralls.io/github/storyicon/graphquery?branch=master) [![GoDoc](https://godoc.org/github.com/storyicon/graphquery?status.svg)](https://godoc.org/github.com/storyicon/graphquery) [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/storyicon/Lobby)
+
  
-GraphQuery is a query language and execution engine tied to any backend service. 
+GraphQuery is a query language and execution engine tied to any backend service.     
+
+[![CircleCI](https://circleci.com/gh/storyicon/graphquery/tree/master.svg?style=svg)](https://circleci.com/gh/storyicon/graphquery/tree/master)[![Go Report Card](https://goreportcard.com/badge/github.com/storyicon/graphquery)](https://goreportcard.com/report/github.com/storyicon/graphquery)  [![Build Status](https://travis-ci.org/storyicon/graphquery.svg?branch=master)](https://travis-ci.org/storyicon/graphquery) [![Coverage Status](https://coveralls.io/repos/github/storyicon/graphquery/badge.svg?branch=master)](https://coveralls.io/github/storyicon/graphquery?branch=master) [![GoDoc](https://godoc.org/github.com/storyicon/graphquery?status.svg)](https://godoc.org/github.com/storyicon/graphquery) [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/storyicon/Lobby)
+
 
 ## Catalog
 
@@ -40,7 +46,7 @@ Graphquery has some built-in text processing functions like `trim`, `template`, 
 ## Getting Started 
 GraphQuery consists of query language and pipelines. To guide you through each of these components, we've written an example designed to illustrate the various pieces of GraphQuery. This example is not comprehensive, but it is designed to quickly introduce the core concepts of GraphQuery. The premise of the example is that we want to use GraphQuery to query for information about library books.
 
-<a href="GetStart_firstexample"></a>
+<a id="GetStart_firstexample"></a>
 
 ### 1. First example
 
