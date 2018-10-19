@@ -14,8 +14,8 @@
 package compiler
 
 import (
-	"storyicon.visualstudio.com/graphquery/kernel"
-	"storyicon.visualstudio.com/graphquery/kernel/pipeline"
+	"github.com/storyicon/graphquery/kernel"
+	"github.com/storyicon/graphquery/kernel/pipeline"
 )
 
 // ReadNode attempts to read a Node from the byte stream.

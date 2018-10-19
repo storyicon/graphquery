@@ -3,7 +3,7 @@ package compiler
 import (
 	"fmt"
 
-	"storyicon.visualstudio.com/graphquery/kernel"
+	"github.com/storyicon/graphquery/kernel"
 )
 
 // Iterator is a io.Reader like object, with specific read functions.

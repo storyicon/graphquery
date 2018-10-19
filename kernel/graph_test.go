@@ -3,7 +3,7 @@ package kernel
 import (
 	"testing"
 
-	"storyicon.visualstudio.com/graphquery/kernel/pipeline"
+	"github.com/storyicon/graphquery/kernel/pipeline"
 )
 
 func TestGraph_Parse(t *testing.T) {

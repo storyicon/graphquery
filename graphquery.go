@@ -17,8 +17,8 @@ package graphquery
 import (
 	"fmt"
 
-	"storyicon.visualstudio.com/graphquery/compiler"
-	"storyicon.visualstudio.com/graphquery/kernel"
+	"github.com/storyicon/graphquery/compiler"
+	"github.com/storyicon/graphquery/kernel"
 )
 
 // Compile compiles an expression in the form of a byte array into a parser

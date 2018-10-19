@@ -18,7 +18,7 @@ import (
 	"errors"
 	"strings"
 
-	xmlpath "storyicon.visualstudio.com/graphquery/kernel/selector/xmlpath.v2"
+	xmlpath "github.com/storyicon/graphquery/kernel/selector/xmlpath.v2"
 )
 
 // XpathSelection is an element set maintained by the Xpath parser.

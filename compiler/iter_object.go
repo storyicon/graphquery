@@ -14,7 +14,7 @@
 package compiler
 
 import (
-	"storyicon.visualstudio.com/graphquery/kernel"
+	"github.com/storyicon/graphquery/kernel"
 )
 
 // ReadObject attempts to read object from the byte stream

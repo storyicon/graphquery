@@ -18,7 +18,7 @@ import (
 	"fmt"
 	"strings"
 
-	"storyicon.visualstudio.com/graphquery/kernel/selector"
+	"github.com/storyicon/graphquery/kernel/selector"
 )
 
 // Graph is a parsed Graph tree

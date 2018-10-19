@@ -17,7 +17,7 @@ package pipeline
 import (
 	"fmt"
 
-	"storyicon.visualstudio.com/graphquery/kernel/selector"
+	"github.com/storyicon/graphquery/kernel/selector"
 )
 
 // Processor is the function call unit of pipeline.

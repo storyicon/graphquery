@@ -18,7 +18,7 @@ import (
 	"strconv"
 	"strings"
 
-	"storyicon.visualstudio.com/graphquery/kernel/selector"
+	"github.com/storyicon/graphquery/kernel/selector"
 )
 
 func init() {

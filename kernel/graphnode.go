@@ -19,8 +19,8 @@ import (
 	"regexp"
 	"strings"
 
-	"storyicon.visualstudio.com/graphquery/kernel/pipeline"
-	"storyicon.visualstudio.com/graphquery/kernel/selector"
+	"github.com/storyicon/graphquery/kernel/pipeline"
+	"github.com/storyicon/graphquery/kernel/selector"
 )
 
 // GraphNode is the atomic node in Graph.

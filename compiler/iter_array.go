@@ -13,7 +13,7 @@
 //    limitations under the License.
 package compiler
 
-import "storyicon.visualstudio.com/graphquery/kernel"
+import "github.com/storyicon/graphquery/kernel"
 
 // ReadArray attempts to read a array from the byte stream.
 func (iter *Iterator) ReadArray() (nodes []*kernel.GraphNode) {
