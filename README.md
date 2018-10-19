@@ -1,4 +1,8 @@
 # Graphquery
+![GraphQuery](https://raw.githubusercontent.com/storyicon/graphquery/master/docs/screenshot/graphquery.png)
+[![Go Report Card](https://goreportcard.com/badge/github.com/storyicon/graphquery)](https://goreportcard.com/report/github.com/storyicon/graphquery)
+ 
+ 
 GraphQuery is a query language and execution engine tied to any backend service. 
 
 ## Overview
@@ -7,7 +11,7 @@ The most amazing thing is that you can use the minimalist GraphQuery syntax to g
 ### Language-independent
 Use GraphQuery to let you unify text parsing logic on any backend language.    
 You won't need to find implementations of Xpath/CSS/Regex/JSONpath selectors between different languages ​​and get familiar with their syntax or explore their compatibility.
-
+ 
 ### Multiple selector syntax support
 You can use GraphQuery to parse any text and use your skilled selector. GraphQuery currently supports the following selectors:
 1. `Jsonpath` for parsing JSON strings
@@ -126,7 +130,9 @@ For example, the language field in our previous example is defined as follows:
 language `css("title");attr("lang")`
 ```
 The `language` is the field name, `css("title"); attr("lang")` is the pipeline. In this pipeline, GraphQuery first uses the CSS selector to find the `title` node from the document, and the title node will be obtained. Pass the obtained node into the attr() function and get its lang attribute. The whole process is as follows:
-![language: document->css("title")->attr("lang")->en]()    
+
+![language: document->css("title")->attr("lang")->en](https://raw.githubusercontent.com/storyicon/graphquery/master/docs/screenshot/pipeline-getlang.png) 
+
 In Example1, we not only use the css and attr functions, but also xpath(). It is easy to associate, Xpath() is to select elements with the Xpath selector.
 The following is a list of the pipeline functions built into the current version of graphquery:
 | pipeline | prototype | example | introduce
@@ -182,5 +188,6 @@ Run the go file, the output is as follows :
 ```
 {"anchor":["Page 1","Page 2","Page 3"]}
 ```
+
 ### 2. For other language
 The service version will be launched recently. Other languages ​​only need to use the interface call. At the same time, we welcome the contributors to write native support code for other languages ​​in GraphQuery.
