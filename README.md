@@ -7,11 +7,17 @@ GraphQuery is a query language and execution engine tied to any backend service.
 
 ## Catalog
 
-1. [Overview](#Overview)      
-2. [Get Start](#GetStart)    
+1. [Overview](#Overview)       
+2. [Get Start](#GetStart)      
+    2.1 [First Example](#GetStart_firstexample)      
+    2.2 [Pipeline](#GetStart_pipeline)     
 3. [Install](#Install)    
+    3.1 [Golang](#Install_golang)      
+    3.2 [Other Language](#Install_other)    
 
-## Overview <a id="Overview"></a>
+<a id="Overview"></a>    
+
+## Overview 
 GraphQuery is an easy to use query language, it has built-in `Xpath/CSS/Regex/JSONpath` selectors and enough built-in `text processing functions`.    
 The most amazing thing is that you can use the minimalist GraphQuery syntax to get `any data structure you want`.
 ### Language-independent
@@ -29,8 +35,14 @@ You can use these selectors in any combination in GraphQuery.
 ### Complete function
 Graphquery has some built-in text processing functions like `trim`, `template`, `replace`. If you think these functions don't meet your needs, you can register new custom functions in the pipeline.
 
-## Getting Started <a id="GetStart"></a>
+<a id="GetStart"></a>
+
+## Getting Started 
 GraphQuery consists of query language and pipelines. To guide you through each of these components, we've written an example designed to illustrate the various pieces of GraphQuery. This example is not comprehensive, but it is designed to quickly introduce the core concepts of GraphQuery. The premise of the example is that we want to use GraphQuery to query for information about library books.
+
+<a href="GetStart_firstexample"></a>
+
+### 1. First example
 
 ```html
 <library>
@@ -129,7 +141,9 @@ Let's first take a look at what data GraphQuery engine returns to us.
 Wow, it's wonderful. Just like what we want.    
 We call the above example Example1, now let's have a brief look at what pipeline is.
 
-### Pipeline
+<a id="GetStart_pipeline"></a>
+
+### 2. Pipeline
 A pipeline is a collection of functions that use the parent element text as an entry parameter to execute the functions in the collection in sequence.
 For example, the language field in our previous example is defined as follows:
 ```graphquery
@@ -159,8 +173,13 @@ The following is a list of the pipeline functions built into the current version
 
 More detailed introduction to pipeline and function, please go to docs.
 
-## Install <a id="Install"></a>
+<a id="Install"></a>
+
+## Install 
 GraphQuery is currently only native to Golang, but for other languages, it can be invoked as a service.     
+
+<a id="Install_golang"></a>
+
 ### 1. Golang:
 ```
 go get github.com/storyicon/graphquery
@@ -196,6 +215,8 @@ Run the go file, the output is as follows :
 ```
 {"anchor":["Page 1","Page 2","Page 3"]}
 ```
+
+<a id="Install_other"></a>
 
 ### 2. Other language
 The service version will be launched recently. Other languages ​​only need to use the interface call. At the same time, we welcome the contributors to write native support code for other languages ​​in GraphQuery.
