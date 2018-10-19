@@ -141,14 +141,14 @@ The following is a list of the pipeline functions built into the current version
 | json | json(JSONSelector) | json("title") | Use json path to select elements | 
 | xpath | xpath(XpathSelector) |  xpath("//title") |Use Xpath selector to select elements |
 | regex | regex(RegexSelector) | regex("/\<title>(.*?)<\/title>/") | Use Regex selector to select elements, You need to wrap the regular expression with / |
-| trim | trim() | trim() | Clear spaces and line breaks before and after the string
-| template | template(TemplateStr) | template("[{$}]") | Add characters before and after variables
-| attr | attr(AttributeName) | attr("lang") | Extract the property of the current node
-| eq | eq(Index) | eq("0") | Take the nth element in the current node collection
-| string | string() | string() | Extract the current node native string
-| text | text() | text() | Extract the text of the current node
-| link | link(KeyName) | link("title") | Returns the current text of the specified key
-| replace | replace(A, B) | replace("a", "b") | Replace all A in the current node to B
+| trim | trim() | trim() | Clear spaces and line breaks before and after the string|
+| template | template(TemplateStr) | template("[{$}]") | Add characters before and after variables|
+| attr | attr(AttributeName) | attr("lang") | Extract the property of the current node|
+| eq | eq(Index) | eq("0") | Take the nth element in the current node collection|
+| string | string() | string() | Extract the current node native string|
+| text | text() | text() | Extract the text of the current node|
+| link | link(KeyName) | link("title") | Returns the current text of the specified key|
+| replace | replace(A, B) | replace("a", "b") | Replace all A in the current node to B|
 More detailed introduction to pipeline and function, please go to docs.
 
 ## Install
