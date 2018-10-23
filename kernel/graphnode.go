@@ -89,6 +89,7 @@ func (node *GraphNode) Parse() *GraphData {
 			})
 		case TypeObject:
 			node.each(func(j int, child *GraphNode) bool {
+				child.Parent = node
 				if err := conseq.Set(child.Name, child.Parse()); err != nil {
 					node.addError(err)
 					return false
