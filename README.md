@@ -9,8 +9,8 @@
 GraphQuery is a query language and execution engine tied to any backend service. It is `back-end language independent`.    
 
 Related Projects:        
-* [GraphQuery-PlayGround](https://github.com/storyicon/graphquery-playground): Learn and test GraphQuery in an interactive walkthrough       
-
+* [GraphQuery-PlayGround](https://github.com/storyicon/graphquery-playground) : Learn and test GraphQuery in an interactive walkthrough       
+* [Document](https://github.com/storyicon/graphquery/wiki) : Detailed documentation of GraphQuery
 
 ## Catalog
 
