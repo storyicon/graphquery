@@ -168,7 +168,7 @@ The following is a list of the pipeline functions built into the current version
 | css | css(CSSSelector) | css("title") | Use CSS selector to select elements | 
 | json | json(JSONSelector) | json("title") | Use json path to select elements | 
 | xpath | xpath(XpathSelector) |  xpath("//title") |Use Xpath selector to select elements |
-| regex | regex(RegexSelector) | regex("/\<title>(.*?)<\/title>/") | Use Regex selector to select elements, You need to wrap the regular expression with / |
+| regex | regex(RegexSelector) | regex("<title>(.*?)</title>") | Use Regex selector to select elements |
 | trim | trim() | trim() | Clear spaces and line breaks before and after the string|
 | template | template(TemplateStr) | template("[{$}]") | Add characters before and after variables|
 | attr | attr(AttributeName) | attr("lang") | Extract the property of the current node|
