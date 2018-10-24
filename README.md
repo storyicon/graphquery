@@ -11,7 +11,7 @@ GraphQuery is a query language and execution engine tied to any backend service.
 Related Projects:        
 * [GraphQuery-PlayGround](https://github.com/storyicon/graphquery-playground) : Learn and test GraphQuery in an interactive walkthrough       
 * [Document](https://github.com/storyicon/graphquery/wiki) : Detailed documentation of GraphQuery
-
+* [GraphQuery-http](https://github.com/storyicon/graphquery-http) : Cross language solution for GraphQuery
 ## Catalog
 
 1. [Overview](#Overview)       
@@ -226,4 +226,9 @@ Run the go file, the output is as follows :
 <a id="Install_other"></a>
 
 ### 2. Other language
-The service version will be launched recently. Other languages ​​only need to use the interface call. At the same time, we welcome the contributors to write native support code for other languages ​​in GraphQuery.
+We use the HTTP protocol to provide a cross-language solution for developers to query GraphQuery using any back-end language you want to use to access the specified port after starting the service.      
+
+> [GraphQuery-http](https://github.com/storyicon/graphquery-http) : Cross language solution for GraphQuery        
+
+You can also use RPC for communication, but currently you may need to do this yourself, because the RPC project on GraphQuery is still under development.           
+At the same time, We welcome the contributors to write native support code for other languages ​​in GraphQuery.      
