@@ -1,48 +1,15 @@
-//    Copyright 2018 storyicon@foxmail.com
-//
-//    Licensed under the Apache License, Version 2.0 (the "License");
-//    you may not use this file except in compliance with the License.
-//    You may obtain a copy of the License at
-//
-//        http://www.apache.org/licenses/LICENSE-2.0
-//
-//    Unless required by applicable law or agreed to in writing, software
-//    distributed under the License is distributed on an "AS IS" BASIS,
-//    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-//    See the License for the specific language governing permissions and
-//    limitations under the License.
-
 package selector
 
 import (
 	"errors"
 	"fmt"
 	"regexp"
-	"strings"
 )
 
 // RegexSelection is an element set maintained by the Regex parser.
 type RegexSelection struct {
 	// Nodes stores the current element collection.
-	Nodes    []string
-	selector *RegexSelector
-}
-
-// RegexSelector defines a parsed regular selector
-type RegexSelector struct {
-	// Raw is unprocessed regular selector
-	Raw string
-	// Selector is a regular expression that golang's regexp package can recognize
-	Selector string
-	// Regexp is a structured Selector
-	Regexp *regexp.Regexp
-	// Modifier is a collection of strings of regex modifiers
-	Modifier string
-	// SubIndex is defined by Modifier. When Modifier contains w, SubIndex will be 1, meaning "without outer"
-	// For example, the text is <div><p>hellow</p></div>
-	// when the regular expression is /<p>(.*?)</p>/, Modifer is an empty string, does not contain the letter w, then SubIndex is 0, and the result is <p>hellow</p>
-	// when the regular expression is /<p>(.*?)</p>/w, Modifer is w, contains the letter w, then SubIndex is 1, and the result is hellow
-	SubIndex int
+	Nodes []string
 }
 
 // NewRegex is used to initialize a Regex Selection from the string
@@ -55,61 +22,25 @@ func NewRegex(document string) (*RegexSelection, error) {
 	}, nil
 }
 
-// HasModifier is used to determine whether the current selector contains the specified modifier
-func (selector *RegexSelector) HasModifier(modifier string) bool {
-	if index := strings.Index(selector.Modifier, modifier); index == -1 {
-		return false
-	}
-	return true
-}
-
-// NewRegexSelector is used to initialize a regular expression parser
-func NewRegexSelector(expr string) *RegexSelector {
-	tail := strings.LastIndex(expr, "/")
-	if tail <= 0 {
-		return nil
-	}
-
-	r := &RegexSelector{
-		Raw:      expr,
-		Modifier: expr[tail+1:],
-		Selector: expr[1:tail],
-	}
-
-	reg, err := regexp.Compile(r.Selector)
-	if err != nil {
-		return nil
-	}
-
-	r.Regexp = reg
-
-	//* Modifier w means submatch without outer
-	if r.HasModifier("w") {
-		r.SubIndex = 1
-	}
-
-	return r
-}
-
 // Find is used to find the set of elements
 // described by the selector in the current collection of elements
 // it returns the current element set when the selector is empty.
 // It's a standard method of the selection implementation
 func (selection *RegexSelection) Find(selector string) (Selection, error) {
 	nodes := selection.Nodes
-	expr := NewRegexSelector(selector)
-	if expr == nil {
+	regex, err := regexp.Compile(selector)
+	if err != nil {
 		return selection, fmt.Errorf("Unable to resolve regular expression: %s", selector)
 	}
 	var conseq []string
-	subIndex := expr.SubIndex
-	regex := expr.Regexp
 	for _, node := range nodes {
 		matches := regex.FindAllStringSubmatch(node, -1)
 		for _, match := range matches {
-			if y := len(match); y > 0 && subIndex < y {
-				conseq = append(conseq, match[subIndex])
+			subIndex := 0
+			if y := len(match); y > 1 {
+				subIndex = 1
 			}
+			conseq = append(conseq, match[subIndex])
 		}
 	}
 	return &RegexSelection{

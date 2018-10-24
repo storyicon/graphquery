@@ -212,7 +212,7 @@ func TestGraph_Parse(t *testing.T) {
 							{
 								Name: "regex",
 								Args: []string{
-									`/<name>(.*?)</name>/w`,
+									`<name>(.*?)</name>`,
 								},
 							},
 							{
@@ -229,7 +229,7 @@ func TestGraph_Parse(t *testing.T) {
 							{
 								Name: "regex",
 								Args: []string{
-									`/var data = ([\s\S]*?)\s+</script>/w`,
+									`var data = ([\s\S]*?)\s+</script>`,
 								},
 							},
 						},
@@ -354,7 +354,7 @@ func TestGraph_Parse(t *testing.T) {
 								Pipelines: []*pipeline.Pipeline{
 									{
 										Name: "regex",
-										Args: []string{"/qualification>(.*?)</w"},
+										Args: []string{"qualification>(.*?)<"},
 									},
 								},
 							},
