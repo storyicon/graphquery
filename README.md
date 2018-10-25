@@ -1,5 +1,7 @@
 **We are looking for contributors**! Please check the [ROADMAP](https://github.com/storyicon/graphquery/blob/master/ROADMAP.md) to see how you can help ❤️
 
+❤️ This is a brand new project, let's give it some star and watch!
+
 ---
 
 # GraphQuery [![CircleCI](https://circleci.com/gh/storyicon/graphquery/tree/master.svg?style=svg)](https://circleci.com/gh/storyicon/graphquery/tree/master) [![Go Report Card](https://goreportcard.com/badge/github.com/storyicon/graphquery)](https://goreportcard.com/report/github.com/storyicon/graphquery)  [![Build Status](https://travis-ci.org/storyicon/graphquery.svg?branch=master)](https://travis-ci.org/storyicon/graphquery) [![Coverage Status](https://coveralls.io/repos/github/storyicon/graphquery/badge.svg?branch=master)](https://coveralls.io/github/storyicon/graphquery?branch=master) [![GoDoc](https://godoc.org/github.com/storyicon/graphquery?status.svg)](https://godoc.org/github.com/storyicon/graphquery) [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/storyicon/Lobby)
