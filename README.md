@@ -60,12 +60,14 @@ As you can see from the comparison chart above, the syntax of GraphQuery is so s
 
 Whether it is a syntax error or a function call error, there will be detailed error messages for you to debug.          
 
-![compare](https://raw.githubusercontent.com/storyicon/graphquery/master/docs/screenshot/error.gif)        
+![compare](https://raw.githubusercontent.com/storyicon/graphquery/master/docs/screenshot/error.gif)       
+
+The above example is executed in [GraphQuery-PlayGround](https://github.com/storyicon/graphquery-playground). We can see that when an error occurs, GraphQuery can return detailed error information to help developers locate the wrong location.        
 
 At the same time, GraphQuery is also very easy to integrate into your backend data system (any backend language), let's continue to look down.                  
 
 ## Getting Started 
-GraphQuery consists of query language and pipelines. To guide you through each of these components, we've written an example designed to illustrate the various pieces of GraphQuery. This example is not comprehensive, but it is designed to quickly introduce the core concepts of GraphQuery. The premise of the example is that we want to use GraphQuery to query for information about library books.
+GraphQuery consists of query language and pipelines. To guide you through each of these components, we've written an example designed to illustrate the various pieces of GraphQuery. This example is not comprehensive, but it is designed to quickly introduce the core concepts of GraphQuery. The premise of the example is that we want to use GraphQuery to query for information about library books.          
 
 
 ### 1. First example
