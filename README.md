@@ -52,7 +52,7 @@ With GraphQuery, you won't need to look for parsing libraries when parsing text,
 
 ![compare](https://raw.githubusercontent.com/storyicon/graphquery/master/docs/screenshot/compare.png) 
            
-As you can see from the comparison chart above, the syntax of GraphQuery is so simple that even if you contact it for the first time, you can still understand its meaning and get started quickly.            
+As you can see from the comparison chart above, the syntax of GraphQuery is so simple that even if you are in touch with it for the first time, you can still understand its meaning and get started quickly.            
 
 At the same time, GraphQuery is also very easy to integrate into your backend data system (any backend language), let's continue to look down.                  
 
