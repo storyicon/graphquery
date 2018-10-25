@@ -109,7 +109,7 @@ Faced with such a text structure, we naturally think of extracting the following
 }
 ```
 This is perfect, when you know the data structure you want to extract, you have actually succeeded 80%, the above is the data structure we want, we call it DDL (Data Definition Language) for the time being. let's see how GraphQuery does it:
-```graphquery
+```
 {
     bookID `css("book");attr("id")`
     title `css("title")`
