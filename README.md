@@ -15,20 +15,22 @@ Related Projects:
 * [Document](https://github.com/storyicon/graphquery/wiki) : Detailed documentation of GraphQuery
 * [GraphQuery-http](https://github.com/storyicon/graphquery-http) : Cross language solution for GraphQuery
 ## Catalog
-
-1. [Overview](#Overview)       
-2. [Get Start](#GetStart)      
-    2.1 [First Example](#GetStart_firstexample)      
-    2.2 [Pipeline](#GetStart_pipeline)     
-3. [Install](#Install)    
-    3.1 [Golang](#Install_golang)      
-    3.2 [Other Language](#Install_other)    
-
-<a id="Overview"></a>    
+- [Overview](#overview)
+    - [Language-independent](#language-independent)
+    - [Multiple selector syntax support](#multiple-selector-syntax-support)
+    - [Complete function](#complete-function)
+    - [Clear data structure & Concise grammar](#clear-data-structure--concise-grammar)
+- [Getting Started](#getting-started)
+    - [1. First example](#1-first-example)
+    - [2. Pipeline](#2-pipeline)
+- [Install](#install)
+    - [1. Golang:](#1-golang)
+    - [2. Other language](#2-other-language)
 
 ## Overview 
 GraphQuery is an easy to use query language, it has built-in `Xpath/CSS/Regex/JSONpath` selectors and enough built-in `text processing functions`.    
-The most amazing thing is that you can use the minimalist GraphQuery syntax to get `any data structure you want`.
+The most amazing thing is that you can use the minimalist GraphQuery syntax to get `any data structure you want`.         
+
 ### Language-independent
 Use GraphQuery to let you unify text parsing logic on any backend language.    
 You won't need to find implementations of Xpath/CSS/Regex/JSONpath selectors between different languages ​​and get familiar with their syntax or explore their compatibility.
@@ -39,17 +41,23 @@ You can use GraphQuery to parse any text and use your skilled selector. GraphQue
 2. `Xpath` and `CSS` for parsing XML/HTML
 3. `Regular expressions` for parsing any text.    
 
-You can use these selectors in any combination in GraphQuery.
+You can use these selectors in any combination in GraphQuery. The rich built-in selector provides great flexibility for your parsing.
 
 ### Complete function
 Graphquery has some built-in text processing functions like `trim`, `template`, `replace`. If you think these functions don't meet your needs, you can register new custom functions in the pipeline.
 
-<a id="GetStart"></a>
+
+### Clear data structure & Concise grammar
+With GraphQuery, you won't need to look for parsing libraries when parsing text, nor do you need to write complex nesting and traversal. Simple and clear GraphQuery syntax gives you a clear picture of the data structure.      
+
+![compare](https://raw.githubusercontent.com/storyicon/graphquery/master/docs/screenshot/compare.png) 
+
+As you can see from the comparison chart above, the syntax of GraphQuery is so simple that even if you are the first contact, you can still understand its meaning and get started quickly.           
+
 
 ## Getting Started 
 GraphQuery consists of query language and pipelines. To guide you through each of these components, we've written an example designed to illustrate the various pieces of GraphQuery. This example is not comprehensive, but it is designed to quickly introduce the core concepts of GraphQuery. The premise of the example is that we want to use GraphQuery to query for information about library books.
 
-<a id="GetStart_firstexample"></a>
 
 ### 1. First example
 
@@ -150,8 +158,6 @@ Let's first take a look at what data GraphQuery engine returns to us.
 Wow, it's wonderful. Just like what we want.    
 We call the above example Example1, now let's have a brief look at what pipeline is.
 
-<a id="GetStart_pipeline"></a>
-
 ### 2. Pipeline
 A pipeline is a collection of functions that use the parent element text as an entry parameter to execute the functions in the collection in sequence.
 For example, the language field in our previous example is defined as follows:
@@ -182,12 +188,8 @@ The following is a list of the pipeline functions built into the current version
 
 More detailed introduction to pipeline and function, please go to docs.
 
-<a id="Install"></a>
-
 ## Install 
 GraphQuery is currently only native to Golang, but for other languages, it can be invoked as a service.     
-
-<a id="Install_golang"></a>
 
 ### 1. Golang:
 ```
@@ -224,8 +226,6 @@ Run the go file, the output is as follows :
 ```
 {"anchor":["Page 1","Page 2","Page 3"]}
 ```
-
-<a id="Install_other"></a>
 
 ### 2. Other language
 We use the HTTP protocol to provide a cross-language solution for developers to query GraphQuery using any back-end language you want to use to access the specified port after starting the service.      
