@@ -20,6 +20,7 @@ Related Projects:
     - [Multiple selector syntax support](#multiple-selector-syntax-support)
     - [Complete function](#complete-function)
     - [Clear data structure & Concise grammar](#clear-data-structure--concise-grammar)
+    - [Mature error message](#mature-error-message)
 - [Getting Started](#getting-started)
     - [1. First example](#1-first-example)
     - [2. Pipeline](#2-pipeline)
@@ -53,6 +54,13 @@ With GraphQuery, you won't need to look for parsing libraries when parsing text,
 ![compare](https://raw.githubusercontent.com/storyicon/graphquery/master/docs/screenshot/compare.png) 
            
 As you can see from the comparison chart above, the syntax of GraphQuery is so simple that even if you are in touch with it for the first time, you can still understand its meaning and get started quickly.            
+
+
+### Mature error message          
+
+Whether it is a syntax error or a function call error, there will be detailed error messages for you to debug.          
+
+![compare](https://raw.githubusercontent.com/storyicon/graphquery/master/docs/screenshot/error.gif)        
 
 At the same time, GraphQuery is also very easy to integrate into your backend data system (any backend language), let's continue to look down.                  
 
