@@ -204,7 +204,7 @@ GraphQuery is currently only native to Golang, but for other languages, it can b
 
 ### 1. Golang:
 ```
-go get github.com/storyicon/graphquery
+go get -u github.com/storyicon/graphquery
 ```
 Create a new go file :
 ```golang
