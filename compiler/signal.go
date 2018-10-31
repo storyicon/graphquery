@@ -33,13 +33,13 @@ var signalValue []SignalType
 
 func init() {
 	signalValue = make([]SignalType, 256)
-	for i := '0'; i < '9'; i++ {
+	for i := '0'; i <= '9'; i++ {
 		signalValue[i] = SignalName
 	}
-	for i := 'a'; i < 'z'; i++ {
+	for i := 'a'; i <= 'z'; i++ {
 		signalValue[i] = SignalName
 	}
-	for i := 'A'; i < 'Z'; i++ {
+	for i := 'A'; i <= 'Z'; i++ {
 		signalValue[i] = SignalName
 	}
 	signalValue['_'] = SignalName
