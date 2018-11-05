@@ -15,6 +15,7 @@
 package pipeline
 
 import (
+	"net/url"
 	"strconv"
 	"strings"
 
@@ -34,6 +35,7 @@ func init() {
 	RegistProcessor("text", calleeText, 0)
 	RegistProcessor("link", calleeLink, 1)
 	RegistProcessor("replace", calleeReplace, 2)
+	RegistProcessor("absolute", calleeAbsolute, 1)
 }
 
 func calleeCSS(node selector.Selection, args []string) (selection selector.Selection, err error) {
@@ -120,4 +122,15 @@ func calleeReplace(node selector.Selection, args []string) (selection selector.S
 	old, replace := args[0], args[1]
 	conseq := strings.Replace(node.String(), old, replace, -1)
 	return selector.NewString(conseq)
+}
+
+func calleeAbsolute(node selector.Selection, args []string) (selection selector.Selection, err error) {
+	raw, parent := node.String(), args[0]
+	var parentURL, rawURL *url.URL
+	if parentURL, err = url.Parse(parent); err == nil {
+		if rawURL, err = url.Parse(raw); err == nil {
+			return selector.NewString(parentURL.ResolveReference(rawURL).String())
+		}
+	}
+	return node, err
 }

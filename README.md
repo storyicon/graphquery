@@ -196,6 +196,7 @@ The following is a list of the pipeline functions built into the current version
 | text | text() | text() | Extract the text of the current node|
 | link | link(KeyName) | link("title") | Returns the current text of the specified key|
 | replace | replace(A, B) | replace("a", "b") | Replace all A in the current node to B|
+| absolute | absolute(A) | absolute("https://google.com") | Absolute will take A as a reference and absoluteize the current text as a URL | 
 
 More detailed introduction to pipeline and function, please go to docs.
 
