@@ -5,6 +5,8 @@ import (
 	"reflect"
 	"strings"
 	"testing"
+
+	"github.com/storyicon/graphquery/kernel"
 )
 
 func TestParseFromString(t *testing.T) {
@@ -220,6 +222,58 @@ func TestParseFromString(t *testing.T) {
 	for _, tt := range tests {
 		if gotResponse := ParseFromString(tt.args.document, tt.args.expr); !reflect.DeepEqual(gotResponse.String(), tt.wantResponse) {
 			t.Errorf("%q. ParseFromString() = %v, want %v", tt.name, gotResponse.String(), tt.wantResponse)
+		}
+	}
+}
+
+func TestCompile(t *testing.T) {
+	type args struct {
+		expr []byte
+	}
+	tests := []struct {
+		name    string
+		args    args
+		want    kernel.Graph
+		wantErr string
+	}{
+		{
+			args: args{
+				expr: []byte("[{ title `text();trim()` url  `attr(\"href\")` }]"),
+			},
+			wantErr: "ReadNode: Unexpected character \"[\", error found in #1 byte of ...|[{ title `t|..., bigger context ...|[{ title `text();trim()` url  `attr(\"href\")` }]|... ",
+		},
+	}
+	for _, tt := range tests {
+		_, err := Compile(tt.args.expr)
+		if err.Error() != tt.wantErr {
+			t.Errorf("%q. Compile() error = %v, wantErr %v", tt.name, err, tt.wantErr)
+			continue
+		}
+	}
+}
+
+func TestParseFromBytes(t *testing.T) {
+	type args struct {
+		document string
+		expr     []byte
+	}
+	tests := []struct {
+		name         string
+		args         args
+		wantResponse string
+	}{
+		{
+			name: "test0",
+			args: args{
+				document: `<a href="1.html">anchor 1</a> <a href="2.html">anchor 2</a> <a href="3.html">anchor 3</a>`,
+				expr:     []byte("a `css(\"a\")` [{ title `text();trim()` url  `attr(\"href\")` }]` }]"),
+			},
+			wantResponse: `{"data":[{"title":"anchor 1","url":"1.html"},{"title":"anchor 2","url":"2.html"},{"title":"anchor 3","url":"3.html"}],"errors":null}`,
+		},
+	}
+	for _, tt := range tests {
+		if gotResponse := ParseFromBytes(tt.args.document, tt.args.expr); !reflect.DeepEqual(gotResponse.JSON(), tt.wantResponse) {
+			t.Errorf("%q. ParseFromBytes() = %v, want %v", tt.name, gotResponse.JSON(), tt.wantResponse)
 		}
 	}
 }
