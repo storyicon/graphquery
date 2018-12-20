@@ -27,6 +27,8 @@ Related Projects:
 - [Install](#install)
     - [1. Golang:](#1-golang)
     - [2. Other language](#2-other-language)
+- [Update Log](#update-log)
+    - [2018-12-20](#2018-12-20)
 
 ## Overview 
 GraphQuery is an easy to use query language, it has built-in `Xpath/CSS/Regex/JSONpath` selectors and enough built-in `text processing functions`.    
@@ -246,3 +248,41 @@ We use the HTTP protocol to provide a cross-language solution for developers to 
 
 You can also use RPC for communication, but currently you may need to do this yourself, because the RPC project on GraphQuery is still under development.           
 At the same time, We welcome the contributors to write native support code for other languages ​​in GraphQuery.      
+
+
+## Update Log
+
+#####  2018-12-20
+
+1. Now `graphquery.Response` is the alias of `kernel.Response`           
+2. Change the type of `Response.Errors` from `[]string` to `kernel.Errors`, `kernel.Errors` implements some common interfaces for `error` and `json`      
+3. Added three methods for kernel.Response       
+3.1 `MarshalData() (string, error)`: Output `Response.Data` as json string
+3.2 `JSON() string`: Output `Response` as json string, It is now equivalent to `String()`       
+3.3 `Decode(obj interface{})`: Map parsing results to a given data structure at a lower cost. You can use it like this:        
+
+```go
+
+type Anchor struct {
+	Title string `json:"title"`
+	URL   string `json:"url"`
+}
+
+func main() {
+	document := `
+        <a href="1.html">anchor 1</a>
+        <a href="2.html">anchor 2</a>
+        <a href="3.html">anchor 3</a>
+    `
+	query := "a `css(\"a\")` [{ title `text();trim()` url  `attr(\"href\")` }]"
+	response := graphquery.ParseFromString(document, query)       
+	
+    anchors := []*Anchor{}
+	response.Decode(&anchors)
+    // Now you have converted the parsing results to []*Anchor
+}
+
+
+```
+
+4. Any questions in use, please feel free to issue :)

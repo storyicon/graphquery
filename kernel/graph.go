@@ -12,6 +12,7 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 // TODO: URL Absolute & Response Parse
+
 package kernel
 
 import (
@@ -31,7 +32,7 @@ type Graph struct {
 	GraphType int
 	// Data stores analytic data.
 	Data   GraphRawData
-	Errors []string
+	Errors Errors
 }
 
 const (
@@ -110,7 +111,9 @@ func (graph *Graph) bubbleErrors() {
 
 func (graph *Graph) addError(errs ...interface{}) {
 	for _, err := range errs {
-		graph.Errors = append(graph.Errors, fmt.Sprint(err))
+		graph.Errors = append(graph.Errors, &Error{
+			Err: fmt.Sprint(err),
+		})
 	}
 }
 

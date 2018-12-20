@@ -11,26 +11,49 @@
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
+
 package kernel
 
 import (
-	"encoding/json"
-	"fmt"
+	"errors"
+
+	jsoniter "github.com/json-iterator/go"
+
+	"github.com/mitchellh/mapstructure"
 )
+
+var json = jsoniter.ConfigCompatibleWithStandardLibrary
 
 // GraphResponse is the analytic result.
 type GraphResponse struct {
 	Data   GraphRawData `json:"data"`
-	Errors []string     `json:"errors"`
+	Errors Errors       `json:"errors"`
 }
 
 func (response *GraphResponse) String() (conseq string) {
+	return response.JSON()
+}
+
+// JSON is used to convert response to JSON string
+func (response *GraphResponse) JSON() (conseq string) {
 	if bytes, err := json.Marshal(response); err == nil {
 		conseq = string(bytes)
 	}
 	return
 }
 
-func (response *GraphResponse) AddError(err interface{}) {
-	response.Errors = append(response.Errors, fmt.Sprint(err))
+// Decode is used to map Response.Data to a given struct
+func (response *GraphResponse) Decode(obj interface{}) error {
+	if response.Data == nil {
+		return errors.New("can not unmarshal nil")
+	}
+	return mapstructure.Decode(response.Data, obj)
+}
+
+// MarshalData is used to convert Response.Data to a JSON string
+func (response *GraphResponse) MarshalData() (string, error) {
+	if response.Data == nil {
+		return "", errors.New("can not marshal nil")
+	}
+	return json.MarshalToString(response.Data)
 }

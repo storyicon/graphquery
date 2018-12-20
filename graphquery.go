@@ -21,6 +21,9 @@ import (
 	"github.com/storyicon/graphquery/kernel"
 )
 
+// Response is an alias for kernel.GraphResponse
+type Response = kernel.GraphResponse
+
 // Compile compiles an expression in the form of a byte array into a parser
 func Compile(expr []byte) (*kernel.Graph, error) {
 	return compiler.Compile(expr)
@@ -37,17 +40,19 @@ func MustCompile(expr []byte) *kernel.Graph {
 
 // ParseFromString will parse documents and expressions directly,
 // and errors will be recorded in the Errors of Response
-func ParseFromString(document string, expr string) (response *kernel.GraphResponse) {
+func ParseFromString(document string, expr string) (response *Response) {
 	return ParseFromBytes(document, []byte(expr))
 }
 
 // ParseFromBytes is used to parse documents in string format and expressions in []byte form
 // errors will be recorded in the Errors of Response
-func ParseFromBytes(document string, expr []byte) (response *kernel.GraphResponse) {
+func ParseFromBytes(document string, expr []byte) (response *Response) {
 	parser, err := Compile(expr)
-	response = &kernel.GraphResponse{}
+	response = &Response{}
 	if err != nil {
-		response.AddError(fmt.Sprintf("--- Compile Error: %s", err))
+		response.Errors = append(response.Errors, &kernel.Error{
+			Err: fmt.Sprintf("--- Compile Error: %s", err),
+		})
 		return
 	}
 	return parser.Parse(document)
