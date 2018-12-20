@@ -252,6 +252,29 @@ func TestCompile(t *testing.T) {
 	}
 }
 
+func TestMustCompile(t *testing.T) {
+	type args struct {
+		expr []byte
+	}
+	tests := []struct {
+		name string
+		args args
+		want *kernel.Graph
+	}{
+		{
+			args: args{
+				expr: []byte("a `css(\"a\")` [{ title `text();trim()` url  `attr(\"href\")` }]` }]"),
+			},
+			want: MustCompile([]byte("a `css(\"a\")` [{ title `text();trim()` url  `attr(\"href\")` }]` }]")),
+		},
+	}
+	for _, tt := range tests {
+		if got := MustCompile(tt.args.expr); !reflect.DeepEqual(got, tt.want) {
+			t.Errorf("%q. MustCompile() = %v, want %v", tt.name, got, tt.want)
+		}
+	}
+}
+
 func TestParseFromBytes(t *testing.T) {
 	type args struct {
 		document string
