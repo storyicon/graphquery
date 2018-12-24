@@ -60,6 +60,7 @@ const (
 func (node *GraphNode) Parse() *GraphData {
 	conseq := NewGraphData(node.Name, node.NodeType)
 	selection := node.getSelection()
+
 	if selection != nil {
 		switch node.NodeType {
 		case TypeString, TypeFloat64:
@@ -89,6 +90,10 @@ func (node *GraphNode) Parse() *GraphData {
 			})
 		case TypeObject:
 			node.each(func(j int, child *GraphNode) bool {
+				// Clearing cache when the node context changes
+				defer (func(node *GraphNode) {
+					child.Selection = nil
+				})(node)
 				child.Parent = node
 				if err := conseq.Set(child.Name, child.Parse()); err != nil {
 					node.addError(err)
