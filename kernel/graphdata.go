@@ -33,7 +33,7 @@ type GraphData struct {
 }
 
 // GraphRawData used to store JSON structure
-type GraphRawData interface{}
+type GraphRawData = interface{}
 
 // GraphObject is GraphData organized by map
 type GraphObject map[string]*GraphData
