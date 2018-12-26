@@ -50,6 +50,11 @@ const (
 // Parse builds the relationship between user nodes and ROOT nodes,
 // parse all node data and returns.
 func (graph *Graph) Parse(document string) *GraphResponse {
+	defer func() {
+		if err := recover(); err != nil {
+			graph.addError(fmt.Sprintf("Fatal Error: %s", err))
+		}
+	}()
 	graph.Root.Selection, _ = selector.NewString(document)
 	graph.Root.derivate(graph.Nodes)
 	graph.parse()

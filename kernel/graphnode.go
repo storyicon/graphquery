@@ -182,7 +182,11 @@ func (node *GraphNode) getPipelines() pipeline.Pipelines {
 				continue
 			}
 			reference := ""
-			if conseq := node.lookUp(pipe.Args[0]); conseq != nil {
+			varname := pipe.Args[0]
+			if varname == node.Name {
+				continue
+			}
+			if conseq := node.lookUp(varname); conseq != nil {
 				reference = conseq.String()
 			}
 			args = append(args, reference)
@@ -221,7 +225,7 @@ func (node *GraphNode) render(s string) string {
 
 		var value string
 		//reference self
-		if varname == "" {
+		if varname == "" || varname == node.Name {
 			//it will change dynamically, throw it to pipeline.
 			value = pipeline.InvokePlaceholder
 
