@@ -24,26 +24,12 @@ func TestXpathSelection_Find(t *testing.T) {
 			want: "Being a Dog Is a Full-Time Job",
 		},
 		{
-			name: "test1",
-			args: args{
-				selector: "//author/@id",
-			},
-			want: "CMS",
-		},
-		{
 			name: "test2",
 			args: args{
 				selector: "$%@#&",
 			},
 			want:    "",
 			wantErr: true,
-		},
-		{
-			name: "test3",
-			args: args{
-				selector: "//author/@ids",
-			},
-			want: "",
 		},
 	}
 	selection, _ := NewXpath(DocumentTest)

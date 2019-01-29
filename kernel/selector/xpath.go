@@ -1,41 +1,43 @@
-//    Copyright 2018 storyicon@foxmail.com
+// Copyright 2019 storyicon@foxmail.com
 //
-//    Licensed under the Apache License, Version 2.0 (the "License");
-//    you may not use this file except in compliance with the License.
-//    You may obtain a copy of the License at
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
 //
-//        http://www.apache.org/licenses/LICENSE-2.0
+//     http://www.apache.org/licenses/LICENSE-2.0
 //
-//    Unless required by applicable law or agreed to in writing, software
-//    distributed under the License is distributed on an "AS IS" BASIS,
-//    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-//    See the License for the specific language governing permissions and
-//    limitations under the License.
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 
 package selector
 
 import (
 	"errors"
+	"fmt"
 	"strings"
 
-	xmlpath "github.com/storyicon/graphquery/kernel/selector/xmlpath.v2"
+	"github.com/antchfx/htmlquery"
+	"golang.org/x/net/html"
 )
 
 // XpathSelection is an element set maintained by the Xpath parser.
 type XpathSelection struct {
 	// Nodes stores the current element collection.
-	Nodes []*xmlpath.Node
+	Nodes []*html.Node
 }
 
 // NewXpath is used to initialize a Xpath Selection from the string
 // It's a constructor function.
 func NewXpath(document string) (*XpathSelection, error) {
-	node, err := xmlpath.ParseHTML(strings.NewReader(document))
+	node, err := htmlquery.Parse(strings.NewReader(document))
 	if err != nil {
 		return nil, err
 	}
 	return &XpathSelection{
-		Nodes: []*xmlpath.Node{
+		Nodes: []*html.Node{
 			node,
 		},
 	}, nil
@@ -45,25 +47,25 @@ func NewXpath(document string) (*XpathSelection, error) {
 // described by the selector in the current collection of elements
 // it returns the current element set when the selector is empty.
 // It's a standard method of the selection implementation
-func (selection *XpathSelection) Find(selector string) (Selection, error) {
-	nodes := selection.Nodes
-	if selector != "" {
-		var conseq []*xmlpath.Node
-		expr, err := xmlpath.Compile(selector)
-		if err != nil {
-			return nil, err
+func (selection *XpathSelection) Find(selector string) (_ Selection, err error) {
+	defer func() {
+		if e := recover(); e != nil {
+			err = fmt.Errorf("%s", e)
 		}
-		for _, node := range nodes {
-			iter := expr.Iter(node)
-			for iter.Next() {
-				conseq = append(conseq, iter.Node())
+	}()
+	parents := selection.Nodes
+	var conseq []*html.Node
+	if selector != "" {
+		for _, parent := range parents {
+			children := htmlquery.Find(parent, selector)
+			for _, child := range children {
+				conseq = append(conseq, child)
 			}
 		}
-		nodes = conseq
 	}
 	return &XpathSelection{
-		Nodes: nodes,
-	}, nil
+		Nodes: conseq,
+	}, err
 }
 
 // Type method is used to convert the current Selection to other types.
@@ -85,7 +87,7 @@ func (selection *XpathSelection) Eq(index int) (Selection, error) {
 	nodes := selection.Nodes
 	if y := len(nodes); y > 0 && index < y {
 		return &XpathSelection{
-			Nodes: []*xmlpath.Node{
+			Nodes: []*html.Node{
 				nodes[index],
 			},
 		}, nil
@@ -98,7 +100,7 @@ func (selection *XpathSelection) Eq(index int) (Selection, error) {
 func (selection *XpathSelection) Each(iterator func(int, Selection) bool) error {
 	for i := 0; i < len(selection.Nodes); i++ {
 		if !iterator(i, &XpathSelection{
-			Nodes: []*xmlpath.Node{
+			Nodes: []*html.Node{
 				selection.Nodes[i],
 			},
 		}) {
@@ -114,13 +116,7 @@ func (selection *XpathSelection) Attr(attr string) (conseq string, err error) {
 	if len(selection.Nodes) == 0 {
 		return
 	}
-	if expr, err := xmlpath.Compile("@" + attr); err == nil {
-		iter := expr.Iter(selection.Nodes[0])
-		if exists := iter.Next(); exists {
-			conseq = iter.Node().String()
-		}
-	}
-	return
+	return htmlquery.SelectAttr(selection.Nodes[0], attr), nil
 }
 
 // String method is used to return the string of all elements in the current element collection
@@ -128,7 +124,7 @@ func (selection *XpathSelection) Attr(attr string) (conseq string, err error) {
 // It's a standard method of the selection implementation
 func (selection *XpathSelection) String() (document string) {
 	for _, node := range selection.Nodes {
-		document += node.Html(true)
+		document += htmlquery.OutputHTML(node, true)
 	}
 	return
 }
@@ -138,7 +134,7 @@ func (selection *XpathSelection) String() (document string) {
 // It's a standard method of the selection implementation
 func (selection *XpathSelection) Text() (document string) {
 	for _, node := range selection.Nodes {
-		document += node.String()
+		document += htmlquery.InnerText(node)
 	}
 	return
 }
