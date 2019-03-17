@@ -14,6 +14,8 @@
 package compiler
 
 import (
+	"strings"
+
 	"github.com/storyicon/graphquery/kernel"
 	"github.com/storyicon/graphquery/kernel/pipeline"
 )
@@ -107,7 +109,8 @@ Loop:
 			for i := iter.head; i < iter.tail; i++ {
 				c = iter.bytes[i]
 				if c == '"' && iter.bytes[i-1] != '\\' {
-					args = append(args, string(iter.bytes[iter.head:i]))
+					arg := strings.Replace(string(iter.bytes[iter.head:i]), `\"`, `"`, -1)
+					args = append(args, arg)
 					iter.head = i + 1
 					if c = iter.WhatIsNextByte(); c == ',' {
 						iter.head++
