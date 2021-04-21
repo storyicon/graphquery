@@ -217,6 +217,51 @@ func TestParseFromString(t *testing.T) {
 			},
 			wantResponse: `{"data":[{"title":"Page 1","url":"01.html"},{"title":"Page 2","url":"02.html"},{"title":"Page 3","url":"03.html"}],"errors":null}`,
 		},
+		{
+			name: "test8",
+			args: args{
+				document: `
+                    <html>
+                        <body>
+							<div>
+                            	<a href="01.html" />
+                            	<a href="02.html" />
+                            	<a href="03.html" />
+							</div>
+                        </body>
+                    </html>
+                `,
+				expr: strings.Join([]string{
+					"anchor `css(\"a\")` [{url `attr(\"href\")`;}]",
+				}, "\r\n"),
+			},
+			wantResponse: `{"data":[{"url":"01.html"},{"url":"02.html"},{"url":"03.html"}],"errors":null}`,
+		},
+		{
+			name: "test9",
+			args: args{
+				document: `
+                    <html>
+                        <body>
+							<div>
+                            	<a href="01.html" />
+                            	<a href="02.html" />
+                            	<a href="03.html" />
+							</div>
+							<div>
+                            	<a href="04.html" />
+                            	<a href="05.html" />
+                            	<a href="06.html" />
+							</div>
+                        </body>
+                    </html>
+                `,
+				expr: strings.Join([]string{
+					"anchor `css(\"div\")` [{ links `css(\"a\")` [{ url `attr(\"href\")`; }] }]",
+				}, "\r\n"),
+			},
+			wantResponse: `{"data":[{"links":[{"url":"01.html"},{"url":"02.html"},{"url":"03.html"}]},{"links":[{"url":"04.html"},{"url":"05.html"},{"url":"06.html"}]}],"errors":null}`,
+		},
 	}
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
 	for _, tt := range tests {
