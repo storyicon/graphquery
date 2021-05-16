@@ -30,6 +30,61 @@
 }
 ```
 
+解析后语法：
+```json
+[
+    {
+        "name": "items",
+        "pipelines": [
+            {
+                "method": "css",
+                "arguments": [".items"]
+            }
+        ],
+        "children": [
+            {
+                "name": "title",
+                "pipelines": [
+                    {
+                        "method": "css",
+                        "arguments": [".title"]
+                    }
+                ]
+            },
+            {
+                "name": "link",
+                "pipelines": [
+                    {
+                        "method": "css",
+                        "arguments": [".link"]
+                    }
+                ]
+            },
+            {
+                "name": "tags",
+                "pipelines": [
+                    {
+                        "method": "css",
+                        "arguments": [".tags"]
+                    }
+                ],
+                "children": [
+                    {
+                        "name": "value",
+                        "pipelines": [
+                            {
+                                "method": "trim"
+                            }                                }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]
+```
+
+
 ## 支持默认值
 支持默认值，比如默认字符串、当前时间
 
